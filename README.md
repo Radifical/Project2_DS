@@ -1,6 +1,6 @@
 # Word Transformation Program
 
-A C++ program that finds paths to transform one word into another by changing one letter at a time, ensuring each intermediate word is valid according to a dictionary.
+A program that finds paths to transform one word into another by changing one letter at a time, ensuring each intermediate word is valid according to a dictionary.
 
 ## Description
 
@@ -28,6 +28,3 @@ Total steps: 1
 - **Depth-First Search (DFS)**: Finding any valid transformation path
 - **Adjacent Word Finding**: O(L) comparison where L is word length
 
-## Time Complexity
-- Graph Building: O(N²L) where N is number of words, L is word length
-- Path Finding: O(N + E) where E is number of edges (word connections) 
