@@ -14,44 +14,57 @@ LEND {L->S} SEND
 Total steps: 1
 ```
 
-## Data Structures & Algorithms
+## Implementation Details
 
-Algorithm Plan and Strategy
-Sort and Deduplication
- Use Radix Sort (for fixed-length words) or std::sort.
- Use a queue for bucket sorting.
- Remove duplicates in a single pass post-sort.
-Adjacent Word Generation
- For a given word, find all dictionary words that differ by one letter.
- Use isAdjacent(w1, w2) to check.
-Find Any Path
- Use DFS with a stack to find any valid transformation path.
- Stop when the target word is found.
-Find Optimal Path
- Use BFS with a queue to find the shortest path.
- Track parents to reconstruct the transformation.
-Character Change Display
- Compare each word pair in the path and show the character change (e.g., lend {e->a} land).
- 
-Flowchart:
+### Data Structures
+- **Graph**: Unordered map for word connections (adjacency list)
+- **Dictionary**: Vector + unordered set for O(1) word lookup
+- **Queue**: BFS implementation for optimal paths
+- **Stack**: DFS implementation for any valid path
+- **Hash Maps**: Parent tracking for path reconstruction
+
+### Algorithm Strategy
+
+1. **Dictionary Processing**
+   - Load dictionary and filter by word length
+   - Sort words (using std::sort)
+   - Remove duplicates in single pass
+
+2. **Word Graph Construction**
+   - For each word, find adjacent words (1-letter difference)
+   - Build adjacency list representation
+   - Use efficient isAdjacent() comparison
+
+3. **Path Finding**
+   - **Any Path (DFS)**
+     - Use stack for depth-first exploration
+     - Track visited words
+     - Stop at first valid path
+   - **Optimal Path (BFS)**
+     - Use queue for breadth-first search
+     - Track parent words
+     - Find shortest transformation
+
+4. **Path Display**
+   - Reconstruct path from parent tracking
+   - Show character changes between words
+
+## Program Flow
+```
 START
   ↓
-INPUT: start word, target word
+INPUT (start word, target word)
   ↓
-Load dictionary into memory
+Load & Process Dictionary
   ↓
-Filter dictionary by word length
+Build Word Graph
   ↓
-Sort dictionary (Radix or Lexicographic Sort)
+Find Transformations
+  ├─→ Any Path (DFS)
+  └─→ Optimal Path (BFS)
   ↓
-Remove duplicates
-  ↓
-Build word graph (edges = 1-letter difference)
-  ↓
-Find transformations:
-     ↳ Any solution (DFS)
-     ↳ Optimal solution (BFS)
-  ↓
-Print each step and changed letter
+Display Results
   ↓
 END
+```
+
